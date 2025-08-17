@@ -1,8 +1,7 @@
 package dev.quilla.productspringweb;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,7 +13,16 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<Product> getAllProducts() {
-
         return service.getAllProducts();
+    }
+
+    @GetMapping("/product/{name}")
+    public Product getProduct(@PathVariable String name) {
+        return service.getProduct(name);
+    }
+
+    @PostMapping("/product")
+    public void addProduct(@RequestBody Product product) {
+        service.addProduct(product);
     }
 }
